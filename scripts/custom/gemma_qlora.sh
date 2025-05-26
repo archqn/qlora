@@ -1,0 +1,22 @@
+python qlora.py \
+    --model_name_or_path /data/lucasjia/models/gemma-7b-it-tokenizer \
+    --output_dir ./output \
+    --dataset /data/lucasjia/data/train_v2.jsonl \
+    --do_train True \
+    --do_eval True \
+    --source_max_len 1024 \
+    --target_max_len 256 \
+    --per_device_train_batch_size 1 \
+    --per_device_eval_batch_size 1 \
+    --gradient_accumulation_steps 32 \
+    --logging_steps 10 \
+    --num_train_epochs 1 \
+    --save_strategy steps \
+    --data_seed 42 \
+    --save_steps 500 \
+    --save_total_limit 2 \
+    --evaluation_strategy steps \
+    --eval_dataset_size 512 \
+    --max_eval_samples 512 \
+    --eval_steps 500 \
+    --optim paged_adamw_32bit 

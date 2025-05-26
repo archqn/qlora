@@ -1,0 +1,31 @@
+python qlora.py \
+    --model_name_or_path /data/lucasjia/models/meta-llama-3-8b-instruct \
+    --output_dir ./output_llama3_nutrition \
+    --dataset /data/lucasjia/data/train_v2.jsonl \
+    --do_train True \
+    --do_eval True \
+    --source_max_len 512 \
+    --target_max_len 128 \
+    --per_device_train_batch_size 1 \
+    --per_device_eval_batch_size 1 \
+    --gradient_accumulation_steps 8 \
+    --logging_steps 10 \
+    --max_steps 3000 \
+    --save_strategy steps \
+    --save_steps 500 \
+    --save_total_limit 10 \
+    --evaluation_strategy steps \
+    --eval_dataset_size 1024 \
+    --max_eval_samples 1000 \
+    --eval_steps 500 \
+    --optim paged_adamw_32bit \
+    --double_quant \
+    --quant_type nf4 \
+    --bits 4 \
+    --bf16 \
+    --group_by_length \
+    --remove_unused_columns False \
+    --gradient_checkpointing \
+    --learning_rate 0.0002 \
+    --warmup_ratio 0.03 \
+    --lr_scheduler_type constant
